@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<table>
+<tr>
+<th>Job Id</th>
+<th>Title</th>
+<th>Location</th>
+<th>Description</th>
+<th>Posted Date</th>
+<th>Salary</th>
+<th>Skills Required</th>
+</tr>
+<tr ng-repeat="job in jobs">
+<td>{{job.jobId}}</td>
+<td>{{job.jobTitle}}</td>
+<td>{{job.location}}</td>
+<td>{{job.jobDescription}}</td>
+<td>{{job.postedOn}}</td>
+<td>{{job.salary}}</td>
+<td>{{job.skillsRequired}}</td>
+</tr>
+
+</table>
+</body>
+</html>

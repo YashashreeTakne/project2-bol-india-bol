@@ -1,6 +1,5 @@
 package com.yashashree.controllers;
 
-
 import javax.servlet.http.HttpSession;
 
 import org.hibernate.Session;
@@ -89,7 +88,6 @@ public ResponseEntity<?> registerUser(@RequestBody PROJ2_USER user){
 		return new ResponseEntity<Error>(error , HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }
-	
 
 @RequestMapping(value="/logout",method=RequestMethod.PUT)
 public ResponseEntity<?>logout(HttpSession session){
@@ -103,8 +101,7 @@ public ResponseEntity<?>logout(HttpSession session){
 	session.removeAttribute("user");
 	session.invalidate();
 	return new ResponseEntity<Void>(HttpStatus.OK);
-			
-		
+					
 }
 
 }

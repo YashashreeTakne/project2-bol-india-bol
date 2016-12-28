@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -69,4 +70,29 @@ private JobDao jobDao;
     	return new ResponseEntity<List<Job>>(jobs,HttpStatus.OK);    	
     	//response 
     }
+    
+//    @RequestMapping(value="/getJobById/{jobId}",method=RequestMethod.GET)
+//    public ResponseEntity<?> getJobById(@PathVariable(value="jobId")int jobId,HttpSession session){
+//    	PROJ2_USER user=(PROJ2_USER)session.getAttribute("user");
+//    	System.out.println("hello31");
+//    	if(user==null){
+//    		System.out.println("hello32");
+//    		System.out.println("USER is null");
+//    		Error error=new Error(1,"Unauthorized user.. login using valid credentials");
+//    		System.out.println("hello33");
+//			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);//401
+//    	}
+////    	
+////    	System.out.println("USER OBJECT " + user.getRole());
+////    	List<Job> jobs1=jobDao.getAllJobs();
+////    	return new ResponseEntity<List<Job>>(jobs1,HttpStatus.OK);    	
+//    	System.out.println("USER OBJECT " + user.getRole());
+//    	logger.debug("JobId "+ jobId);
+//    	System.out.println("hello34");
+//    	Job jobs1=jobDao.getJobById(jobId);
+//    	System.out.println("hello35");
+//    	return new ResponseEntity<Job>(jobs1,HttpStatus.OK);
+//    	//response 
+//    }
+ 
 }

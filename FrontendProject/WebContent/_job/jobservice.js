@@ -8,10 +8,12 @@ app.factory('JobService',function($http){
 	
 	jobService.getAllJobs=function(){
 		return $http.get(BASE_URL + "/getAllJobs");
-	}
-	
+	}	// it returns jobservice object to be used in controller further
+		
+//	jobService.getJobById=function(jobId){
+//		return $http.get(BASE_URL + "/getJobById/"+jobId)
+//	}
 	return jobService;
-	// it returns jobservice object to be used in controller further
 })
 	
 //	return jobService;

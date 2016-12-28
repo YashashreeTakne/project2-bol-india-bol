@@ -20,7 +20,7 @@ app.controller('JobController',function($scope,$location,JobService){
 			$location.path('/postJob')
 			}
 		})
-	}
+	};
 	
 	function getAllJobs(){
 		console.log('entering get All jobs')
@@ -34,5 +34,21 @@ app.controller('JobController',function($scope,$location,JobService){
 		})
 	}
 	getAllJobs();
+	
+//	$scope.getJobById=function(jobId) {
+//		
+//		console.log('entering get jobs by Id')
+//		JobService.getJobById(jobId)
+//		
+//		.then(function(response){
+//			$scope.jobs1=response.data;  // single Job object
+//			console.log(response.status); //200
+//			
+//		},function(response){
+//			console.log(response.status)
+//		})
+//		
+//	};
+	
 
 })

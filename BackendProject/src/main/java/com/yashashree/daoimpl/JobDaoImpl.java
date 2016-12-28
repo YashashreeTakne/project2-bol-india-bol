@@ -35,4 +35,15 @@ private SessionFactory sessionFactory;
 		return jobs;
 	}
 
+//	@Override
+//	public Job getJobById(int jobId) {
+//		Session session=sessionFactory.openSession();
+//		System.out.println("hello36");
+//		Job jobs1=(Job)session.get(Job.class, jobId);
+//		System.out.println("hello37");
+//		session.close();
+//		System.out.println("hello38");
+//		return jobs1;
+//	}
+
 }

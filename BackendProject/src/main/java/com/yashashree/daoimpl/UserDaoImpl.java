@@ -1,8 +1,6 @@
 package com.yashashree.daoimpl;
 
 
-import java.util.List;
-
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import com.yashashree.dao.UserDao;
 import com.yashashree.model.PROJ2_USER;
-import com.yashashree.model.User;
 @Repository
 public class UserDaoImpl implements UserDao{
 	@Autowired

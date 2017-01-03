@@ -13,7 +13,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Blog {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String BlogId;
 
 	@NotEmpty(message = "Please Enter Title")

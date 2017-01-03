@@ -1,5 +1,8 @@
 package com.yashashree.controllers;
 
+import java.io.File;
+import java.io.FileOutputStream;
+
 import javax.servlet.http.HttpSession;
 
 import org.hibernate.Session;
@@ -11,13 +14,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.yashashree.dao.FileUploadDAO;
 import com.yashashree.dao.UserDao;
 import com.yashashree.model.Error;
 import com.yashashree.model.PROJ2_USER;
+import com.yashashree.model.ProfilePhoto;
 @RestController
 public class UserController {
 @Autowired
 private UserDao userDao;
+
+@Autowired
+private FileUploadDAO fileUploadDao;
+
+
 //isOnline - set true when the user login
 //isOnline -set false when the user logout
 @RequestMapping(value="/login",method=RequestMethod.POST)
@@ -44,6 +54,27 @@ public ResponseEntity<?> login(@RequestBody PROJ2_USER user,HttpSession session)
 
 		validUser.setOnline(true);
 		userDao.updateUser(validUser); // to update online status in db
+		
+		
+		
+		//select * from proj2_profile_pics where username='adam';
+		ProfilePhoto getUploadFile=fileUploadDao.getFile(user.getUsername());
+		  if(getUploadFile!=null){
+	  	String name=getUploadFile.getPhotoName();
+	  	System.out.println(getUploadFile.getData());
+	  	byte[] imagefiles=getUploadFile.getData();
+	  	try{
+	  		String path="C:/Users/dell/git/project2-bol-india-bol/BackendProject/src/main/webapp/WEB-INF/resources/images/"+user.getUsername();
+	  		File file=new File(path);
+	  		//file.mkdirs();
+	  		FileOutputStream fos = new FileOutputStream(file);//to Write some data 
+	  		fos.write(imagefiles);
+	  		fos.close();
+	  		}catch(Exception e){
+	  		e.printStackTrace();
+	  		}
+		  }
+		
 		return new ResponseEntity<PROJ2_USER>(validUser,HttpStatus.OK);//200
 	}
 }
@@ -89,19 +120,27 @@ public ResponseEntity<?> registerUser(@RequestBody PROJ2_USER user){
 	}
 }
 
+
+
 @RequestMapping(value="/logout",method=RequestMethod.PUT)
-public ResponseEntity<?>logout(HttpSession session){
-	
+public ResponseEntity<?> logout(HttpSession session){
 	PROJ2_USER user=(PROJ2_USER)session.getAttribute("user");
-	if(user!=null)
-	{
+	if(user!=null){
 		user.setOnline(false);
 		userDao.updateUser(user);
+		try{
+                        //change according to your workspace path and project name
+	  		String path="C:/Users/dell/git/project2-bol-india-bol/BackendProject/src/main/webapp/WEB-INF/resources/images/"+user.getUsername();
+	  		File file=new File(path);
+	  		System.out.println(file.delete());
+	  		
+	  		}catch(Exception e){
+	  		e.printStackTrace();
+	  		}
 	}
 	session.removeAttribute("user");
 	session.invalidate();
 	return new ResponseEntity<Void>(HttpStatus.OK);
-					
 }
 
 }

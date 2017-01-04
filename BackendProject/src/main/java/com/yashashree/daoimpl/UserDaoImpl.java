@@ -1,7 +1,10 @@
 package com.yashashree.daoimpl;
 
 
+import java.util.List;
+
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,4 +84,18 @@ private SessionFactory sessionFactory;
 		return user;
 	}
 
+	
+	@Override
+	public List<PROJ2_USER> getAllUsers(PROJ2_USER user) {
+		Session session=sessionFactory.openSession();
+		SQLQuery query=session.createSQLQuery("select * from proj2_user where username in (select username from proj2_user where username!=? minus(select to_id from proj2_friend where from_id=? union select from_id from proj2_friend where to_id=?))");
+		query.setString(0, user.getUsername());
+		query.setString(1, user.getUsername());
+		query.setString(2, user.getUsername());
+		query.addEntity(PROJ2_USER.class);
+		List<PROJ2_USER> users=query.list();
+		System.out.println(users);
+		session.close();
+		return users;
+	}
 }

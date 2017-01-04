@@ -48,6 +48,21 @@
 						</ul></li>
 				</ul>
 
+		<!-- Friends Module -->
+			<ul class="nav navbar-nav">
+				<li class="dropdown" ng-show="currentUser.id">
+					<a href="" class="dropdown-toggle" data-toggle="dropdown" >Friends<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="#/getAllUsers"> View User Details</a></li>
+						<li><a href="#/friendsList">List of Friends</a></li>
+						<li><a href="#/pendingRequest">Pending Friends request</a></li>
+					</ul>
+				</li>
+			</ul>
+		
+		<!-- /// Friends Module -->
+			
+
 			<ul class="nav navbar-nav">
 			     <li  ng-show="currentUser.id">
 						<a href="#/uploadPicture" >Upload Profile Picture</a>
@@ -100,6 +115,9 @@
 <script type="text/javascript" src="_job/jobcontroller.js"></script>
 <script type="text/javascript" src="_job/jobservice.js"></script>
 
+<script type="text/javascript" src="_friend/friendservice.js"></script>
+<script type="text/javascript" src="_friend/friendcontroller.js"></script>
+	
 
 </html>
 </body>

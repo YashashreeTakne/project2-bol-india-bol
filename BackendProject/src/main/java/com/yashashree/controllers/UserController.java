@@ -2,6 +2,7 @@ package com.yashashree.controllers;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -141,6 +142,21 @@ public ResponseEntity<?> logout(HttpSession session){
 	session.removeAttribute("user");
 	session.invalidate();
 	return new ResponseEntity<Void>(HttpStatus.OK);
+}
+
+
+@RequestMapping(value="/getUsers",method=RequestMethod.GET)
+public ResponseEntity<?> getAllUsers(HttpSession session){
+	PROJ2_USER user=(PROJ2_USER)session.getAttribute("user");
+	if(user==null)
+	return new	ResponseEntity<Error>(new Error(1,"Unauthorized user"),HttpStatus.UNAUTHORIZED);
+	else
+	{
+		List<PROJ2_USER> users=userDao.getAllUsers(user);
+		for(PROJ2_USER u:users)
+			System.out.println("IsONline " + u.isOnline());
+		return new ResponseEntity<List<PROJ2_USER>>(users,HttpStatus.OK);
+	}
 }
 
 }

@@ -2,11 +2,13 @@ var app=angular.module("myApp",['ngRoute','ngCookies'])
 app.config(function($routeProvider){
 	console.log('entering configuration')
 	$routeProvider
+	
 	.when('/login',{
 		controller:'UserController',
 		templateUrl:'_user/login.html'
 	})
 	
+	//***** profile *******
 		.when('/uploadPicture',{
 	
 		templateUrl:'_user/uploadFile.html'
@@ -20,6 +22,8 @@ app.config(function($routeProvider){
 		templateUrl:'_user/register.html'
 	})
 		
+	
+	//************ job *********
 	.when('/postJob',{
 		controller:'JobController',
 		templateUrl:'_job/createJob.html'
@@ -27,6 +31,22 @@ app.config(function($routeProvider){
 	.when('/getAllJobs',{
 		controller:'JobController',  // write a function to get all jobs from the backend => JobService
 		templateUrl:'_job/jobs.html'  // to display the job titles in html page
+	})
+	
+	// ******* friend**********
+	.when('/friendsList',{
+			controller:'FriendController',
+		templateUrl:'_friend/listOfFriends.html'
+	})
+	.when('/pendingRequest',{
+		controller:'FriendController',
+		templateUrl:'_friend/pendingRequest.html'
+		
+	})
+	.when('/getAllUsers',{
+		controller:'UserController',
+		templateUrl:'_user/listOfUsers.html'
+			
 	})
 })
 //	.when('/viewjobapply',{

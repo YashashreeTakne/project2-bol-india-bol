@@ -75,6 +75,12 @@
 
 		<!--// Blog Module -->
 
+		<!-- chat Module -->
+			<ul class="nav navbar-nav">
+				<li ng-show="currentUser.id">
+				<a href="#/chat">Chat</a></li>
+			</ul>
+		<!-- ///// chat Module -->
 			<ul class="nav navbar-nav">
 			     <li  ng-show="currentUser.id">
 						<a href="#/uploadPicture" >Upload Profile Picture</a>
@@ -133,6 +139,13 @@
 <script type="text/javascript" src="_blog/blogservice.js"></script>
 <script type="text/javascript" src="_blog/blogcontroller.js"></script>
 <script type="text/javascript" src="_blog/blogdetailcontroller.js"></script>
+
+<script type="text/javascript" src="_chat/chatservice.js"></script>
+<script type="text/javascript" src="_chat/chatcontroller.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.1/sockjs.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.2/lodash.min.js"></script>
 </html>
 </body>
 </html>

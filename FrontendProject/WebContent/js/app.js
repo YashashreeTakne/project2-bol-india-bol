@@ -64,6 +64,12 @@ app.config(function($routeProvider){
 		controller:'BlogDetailController',
 		templateUrl:'_blog/getBlogDetail.html'
 	})
+	
+	//********** chat *******
+	.when('/chat',{
+		controller:'ChatController',
+		templateUrl:'_chat/chat.html'
+	})
 })
 //	.when('/viewjobapply',{
 //	controller:'JobController',

@@ -62,6 +62,18 @@
 		
 		<!-- /// Friends Module -->
 			
+		<!-- Blog Module -->
+			<ul class="nav navbar-nav">
+ 				<li class="dropdown" ng-show="currentUser.id">
+					<a href="" class="dropdown-toggle" data-toggle="dropdown" >Blog<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#/getAllBlogs"> View All Blogs</a></li>
+							<li><a href="#/addPost">Add a new Post</a></li>
+						</ul>
+				</li>
+			</ul>
+
+		<!--// Blog Module -->
 
 			<ul class="nav navbar-nav">
 			     <li  ng-show="currentUser.id">
@@ -118,7 +130,9 @@
 <script type="text/javascript" src="_friend/friendservice.js"></script>
 <script type="text/javascript" src="_friend/friendcontroller.js"></script>
 	
-
+<script type="text/javascript" src="_blog/blogservice.js"></script>
+<script type="text/javascript" src="_blog/blogcontroller.js"></script>
+<script type="text/javascript" src="_blog/blogdetailcontroller.js"></script>
 </html>
 </body>
 </html>

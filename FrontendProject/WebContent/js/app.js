@@ -48,6 +48,22 @@ app.config(function($routeProvider){
 		templateUrl:'_user/listOfUsers.html'
 			
 	})
+	
+	//******* blog *******
+	
+	
+.when('/addPost',{
+		controller:'BlogController',
+		templateUrl:'_blog/newPost.html'
+	})
+	.when('/getAllBlogs',{
+		controller:'BlogController',
+		templateUrl:'_blog/blogList.html'
+	})
+       .when('/getBlogDetail/:id',{
+		controller:'BlogDetailController',
+		templateUrl:'_blog/getBlogDetail.html'
+	})
 })
 //	.when('/viewjobapply',{
 //	controller:'JobController',

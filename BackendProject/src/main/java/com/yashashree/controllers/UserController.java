@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +26,9 @@ private UserDao userDao;
 
 @Autowired
 private FileUploadDAO fileUploadDao;
-
+//
+//@Autowired
+//private Email email;
 
 //isOnline - set true when the user login
 //isOnline -set false when the user logout
@@ -109,6 +110,8 @@ public ResponseEntity<?> registerUser(@RequestBody PROJ2_USER user){
 	else
 	{
 		System.out.println("h13");
+
+		//email.send(user, "hello"+user.getUsername()+", Your Account is Activated", "Welcome to Yashashree's website!");
 
 		return new ResponseEntity<PROJ2_USER>(savedUser,HttpStatus.OK);
 	}

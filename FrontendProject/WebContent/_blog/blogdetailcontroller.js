@@ -46,4 +46,17 @@ app.controller('BlogDetailController',function($routeParams,$scope,BlogService){
         	console.log(response.status)
         })
 	}
+	
+	
+//	$scope.increaseLikes=function(blogPost){
+//		
+//		blog.likes++;
+//		
+//	}
+//	
+//$scope.increaseDislikes=function(blogPost){
+//		
+//		blog.dislikes++;
+//		
+//	}
 })

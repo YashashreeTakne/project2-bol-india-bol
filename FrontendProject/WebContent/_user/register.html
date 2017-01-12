@@ -2,28 +2,85 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Webminar - Sign Up</title>
+
+<style>
+form {
+    border: 3px solid #f1f1f1;
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+button {
+
+ 
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+}
+
+img.avatar {
+    width: 40%;
+    border-radius: 50%;
+}
+
+.container {
+    padding: 16px;
+    width: 60%;
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+       display: block;
+       float: none;
+    }
+    
+}
+</style>
 </head>
 <body>
-<form>
-<table>
-<tr><td>Username</td><td><input type="text" ng-model="user.username"></td></tr>
-<tr><td>password</td><td><input type="password" ng-model="user.password"></td></tr>
-<tr><td>email</td><td><input type="text" ng-model="user.email"></td></tr>
+<form> 
+<div class="imgcontainer">
+    <img src="1.png" alt="Webminar" class="avatar">
+  </div>
+<div class="container">
+    <label><b>Username</b></label>
+<input type="text" ng-model="user.username" placeholder="Enter Username" name="uname" required>
 
+ <label><b>Password</b></label>
+<input type="password" ng-model="user.password"  placeholder="Enter Password" name="psw" required>
 
+ <label><b>Email</b></label>
+<input type="text" ng-model="user.email" placeholder="Enter Email" name="email" required>
 
-<tr><td>Select role</td><td>
-<input type="radio" ng-model="user.role" value="STUDENT">Student
-<input type="radio" ng-model="user.role" value="ALUMNI">Alumni
-<input type="radio" ng-model="user.role" value="EMPLOYEE">Employee</td>
-</tr>
-
-<tr><td><input type="submit" ng-click="registerUser()" value="Register" type="button" class="btn btn-info"></td></tr>
-
-
-</table>
-
+ <label><b>Select Role</b></label>
+<br>
+<input type="radio" ng-model="user.role" value="STUDENT"><span><strong> Student  </strong></span>
+<input type="radio" ng-model="user.role" value="ALUMNI"><span><strong> Alumni  </strong></span>
+<input type="radio" ng-model="user.role" value="EMPLOYEE"><span><strong> Employee </strong> </span>
+<br><br>
+<button type="submit" ng-click="registerUser()" class="btn btn-info">Register</button>
+</div>
 </form>
 {{errorMessage}}
 </body>

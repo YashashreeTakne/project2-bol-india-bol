@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Webminar - Bolg Detail</title>
 </head>
 <body>
 
@@ -10,8 +10,8 @@
     <div class="col-sm-12 col-md-12 col-lg-12">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <div >{{blogPost.title}}</div>
-            
+            <div ><strong>{{blogPost.title}}</strong></div>
+            <br>
             <span><strong>by: </strong>{{blogPost.createdBy.username}}</span>
             <span><strong>on: </strong>{{blogPost.createdOn | date:'medium'}}</span>
           
@@ -20,8 +20,19 @@
           {{blogPost.body}}
           
           </div>
+<!--           <div> -->
+<!--           Likes: {{blogPost.likes}} -->
+          
+<!--           <br> -->
+<!--           Dislikes: {{blogPost.dislikes}} -->
+<!--           </div> -->
           </div>
           </div>
+          <br>
+<!--           <input type="button" value="Like" ng-click="increaseLikes(blogPost)"> -->
+<!--           <input type="button" value="Dislike" ng-click="increaseDislikes(blogPost)"> -->
+          
+          <br>
 <a href="" ng-click="getComments(blogPost.id)" class="btn btn-default">Show Comments</a>
 <ul ng-show="showComments">
 <li ng-repeat="comment in comments" style="list-style: none;">

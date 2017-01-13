@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.List;
 
+import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.yashashree.dao.FileUploadDAO;
 import com.yashashree.dao.UserDao;
+import com.yashashree.model.Email;
 import com.yashashree.model.Error;
 import com.yashashree.model.PROJ2_USER;
 import com.yashashree.model.ProfilePhoto;
@@ -26,9 +29,9 @@ private UserDao userDao;
 
 @Autowired
 private FileUploadDAO fileUploadDao;
-//
-//@Autowired
-//private Email email;
+
+@Autowired
+private Email email;
 
 //isOnline - set true when the user login
 //isOnline -set false when the user logout
@@ -86,7 +89,7 @@ public ResponseEntity<?> login(@RequestBody PROJ2_USER user,HttpSession session)
 //'?'  - Any Type [User,Error] 
 //ENDPOINT : http://localhost:8080/proj2backend/register 
 @RequestMapping(value="/register",method=RequestMethod.POST)
-public ResponseEntity<?> registerUser(@RequestBody PROJ2_USER user){
+public ResponseEntity<?> registerUser(@RequestBody PROJ2_USER user,HttpSession session,HttpServletRequest request){
 	//client will send only username, password, email, role 
 	try{
 //	logger.debug("USERCONTROLLER=>REGISTER " + user);
@@ -111,11 +114,11 @@ public ResponseEntity<?> registerUser(@RequestBody PROJ2_USER user){
 	{
 		System.out.println("h13");
 
-		//email.send(user, "hello"+user.getUsername()+", Your Account is Activated", "Welcome to Yashashree's website!");
+		email.send(user, "hello"+user.getUsername()+", Your Account is Activated", "Welcome to Yashashree's website!");
 
 		return new ResponseEntity<PROJ2_USER>(savedUser,HttpStatus.OK);
 	}
-	}catch(Exception e){
+	}catch(MessagingException e){
 		e.printStackTrace();
 		System.out.println("h14");
 

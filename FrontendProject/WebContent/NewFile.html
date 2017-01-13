@@ -1,9 +1,5 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Webminar - New Blog</title>
-
 <style>
 form {
     border: 3px solid #f1f1f1;
@@ -19,8 +15,8 @@ input[type=text], input[type=password] {
 }
 
 button {
-
- 
+    
+    
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
@@ -40,7 +36,6 @@ img.avatar {
 
 .container {
     padding: 16px;
-    width: 60%;
 }
 
 span.psw {
@@ -54,22 +49,32 @@ span.psw {
        display: block;
        float: none;
     }
-    
+    .cancelbtn {
+       width: 100%;
+    }
 }
 </style>
-</head>
 <body>
-<h1>Post a blog here</h1>
-<form >
-<div class="container">
-    <label><b>Enter the title</b></label>
-    <input type="text" ng-model="blogPost.title" placeholder="Enter the title">
-   <br>
-    <label><b>Content</b></label>
-<textarea rows="10"  ng-model="blogPost.body" placeholder="Content"></textarea>
-<button type="submit" ng-click="submit()" class="btn btn-info"> Post a new Blog</button>
 
-</div>
+<h2>Login Form</h2>
+
+<form action="action_page.php">
+  <div class="imgcontainer">
+    <img src="logo.jpg" alt="Avatar" class="avatar">
+  </div>
+
+  <div class="container">
+    <label><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="uname" required>
+
+    <label><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" required>
+        
+    <button type="submit" class="btn btn-info">Login</button>
+    
+  </div>
+
 </form>
+
 </body>
 </html>

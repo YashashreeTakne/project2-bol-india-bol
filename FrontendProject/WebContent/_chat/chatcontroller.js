@@ -10,5 +10,6 @@ app.controller("ChatController", function($scope,$rootScope ,ChatService) {
     
     ChatService.receive().then(null, null, function(message) {
       $scope.messages.push(message);
+      // whenever i receive any new message i want to push it to the messages array
     });
   });

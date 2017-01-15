@@ -33,6 +33,11 @@ app.config(function($routeProvider){
 		templateUrl:'_job/jobs.html'  // to display the job titles in html page
 	})
 	
+	.when('/editJob/:id',{
+		controller:'EditController',
+		templateUrl:'_job/editJob.html'
+	})
+	
 	// ******* friend**********
 	.when('/friendsList',{
 			controller:'FriendController',

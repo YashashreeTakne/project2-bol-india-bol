@@ -10,9 +10,35 @@ app.factory('JobService',function($http){
 		return $http.get(BASE_URL + "/getAllJobs");
 	}	// it returns jobservice object to be used in controller further
 		
-//	jobService.getJobById=function(jobId){
-//		return $http.get(BASE_URL + "/getJobById/"+jobId)
-//	}
+	
+	jobService.getJobDetail=function(id){
+		console.log('getJobDetails')
+		return $http.get("http://localhost:8086/BackendProject/job/"+ id)
+	};
+	
+	
+jobService.deleteJob=function(id){
+		
+		console.log("entering delete job in service with id"+id);
+		return $http.delete(BASE_URL + "/job/"+id)
+		.then(function(response){
+			console.log(response.status)
+					return response.status;
+		},function(response){
+			
+			console.log(response.status)
+
+		});
+
+	};
+	
+	
+	jobService.updateJob=function(id,job){
+		console.log('update job in service')
+		console.log('job id ' + id)
+		return $http.put(BASE_URL + "/job/"+id, job);
+	}
+	
 	return jobService;
 })
 	

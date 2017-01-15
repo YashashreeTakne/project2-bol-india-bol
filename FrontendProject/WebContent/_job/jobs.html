@@ -16,6 +16,11 @@
 			<th>Posted Date</th>
 			<th>Salary</th>
 			<th>Skills Required</th>
+			<th>Contact To</th>
+			<th>Created By</th>
+			<th>Edit</th>
+			<th>DELETE</th>
+			
 			</tr>
 		</thead>
 		<tbody >
@@ -24,10 +29,17 @@
 				<td>{{job.jobTitle}}</td>
 				<td>{{job.location}}</td>
 				<td>{{job.jobDescription}}</td>
-				<td>{{job.postedOn}}</td>
+				<td>{{job.postedOn | date:'MM/dd/yyyy HH:mm'}}</td>
 				<td>{{job.salary}}</td>
 				<td>{{job.skillsRequired}}</td>
+				<td>{{job.email}}</td>
+				<td>Created By : {{job.createdBy.username}}</td>
+				
 
+			
+<td ng-show="currentUser.role=='ADMIN' || currentUser.username==job.createdBy.username"><a href="#/editJob/{{job.jobId}}" >Edit</a></td>
+<td ng-show="currentUser.role=='ADMIN' || currentUser.username==job.createdBy.username"><a href="" ng-click="deleteJob(job.jobId)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-trash"></span></a></td>
+			
 				<!--   <a href="#/getJobById/{{job.jobId}}" >{{job.jobTitle}}</a>  -->
 				<!-- <a href=""ng-click="getJobById(job.jobId)" >{{job.jobTitle}}</a> -->
 

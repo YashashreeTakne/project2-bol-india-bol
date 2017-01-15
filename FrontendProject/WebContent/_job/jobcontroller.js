@@ -35,6 +35,26 @@ app.controller('JobController',function($scope,$location,JobService){
 	}
 	getAllJobs();
 	
+	
+	
+
+	$scope.deleteJob=function(id){
+			
+			console.log("entering delete method in controller with id"+ id);
+			JobService.deleteJob(id)
+			.then(
+			
+					function(d){
+						
+						console.log("deleted Successfylly");
+						console.log(d);
+						
+						$location.path('/getAllJobs')
+					},function(){
+						console.log("Unable to delete");
+						
+					})
+		}
 //	$scope.getJobById=function(jobId) {
 //		
 //		console.log('entering get jobs by Id')

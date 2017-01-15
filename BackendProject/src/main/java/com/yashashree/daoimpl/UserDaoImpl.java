@@ -88,7 +88,8 @@ private SessionFactory sessionFactory;
 	@Override
 	public List<PROJ2_USER> getAllUsers(PROJ2_USER user) {
 		Session session=sessionFactory.openSession();
-		SQLQuery query=session.createSQLQuery("select * from proj2_user where username in (select username from proj2_user where username!=? minus(select to_id from proj2_friend where from_id=? union select from_id from proj2_friend where to_id=?))");
+		SQLQuery query=session.createSQLQuery(
+		"select * from proj2_user where username in (select username from proj2_user where username!=? minus(select to_id from proj2_friend where from_id=? and status!='D' union select from_id from proj2_friend where to_id=? and status!='D'))");
 		query.setString(0, user.getUsername());
 		query.setString(1, user.getUsername());
 		query.setString(2, user.getUsername());
@@ -98,4 +99,4 @@ private SessionFactory sessionFactory;
 		session.close();
 		return users;
 	}
-}
+	}

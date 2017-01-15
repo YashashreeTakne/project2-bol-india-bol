@@ -26,4 +26,22 @@ app.controller('BlogController',function($scope,$location,BlogService){
 		console.log(response.data)
 	})
 	
+	
+$scope.deleteBlog=function(id){
+		
+		console.log("entering delete method in controller with id"+ id);
+		BlogService.deleteBlog(id)
+		.then(
+		
+				function(d){
+					
+					console.log("deleted Successfylly");
+					console.log(d);
+					
+					$location.path('/getAllBlogs')
+				},function(){
+					console.log("Unable to delete");
+					
+				})
+	}
 })

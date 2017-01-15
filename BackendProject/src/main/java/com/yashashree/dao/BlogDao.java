@@ -12,4 +12,7 @@ public interface BlogDao {
 	BlogPost addBlogPost(PROJ2_USER user,BlogPost blogPost);
 	List<BlogComment> getComments(int blogId);
 	BlogPost addBlogComment(PROJ2_USER user,BlogComment Comment);
+	
+	BlogPost updateBlog(int id,BlogPost blogPost);
+	void deleteBlog(int id);
 }

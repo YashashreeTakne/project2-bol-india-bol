@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.yashashree.dao.BlogDao;
 import com.yashashree.model.BlogComment;
 import com.yashashree.model.BlogPost;
@@ -86,4 +87,40 @@ private BlogDao blogDao;
         BlogPost createdBlogPost= blogDao.addBlogComment(user, blogComment);
         return new ResponseEntity<BlogPost>(createdBlogPost,HttpStatus.OK);
     }
+    
+    
+    
+    
+    
+  //http://localhost:8080/appname/person/1   , PUT  -> DispatcherServlet ->
+ // handler -> find a method in controller which handle the request
+ @RequestMapping(value="/get/{id}",method=RequestMethod.PUT)
+ public ResponseEntity<?> updateBlog(
+ 		@PathVariable int id,@RequestBody BlogPost blogPost){
+ 	//person -> from client
+ 	//updatedPerson -> from database 
+	 BlogPost updatedBlog=blogDao.updateBlog(id, blogPost);
+ 	if(blogPost==null)
+ 		return new ResponseEntity<BlogPost>(HttpStatus.NOT_FOUND);
+ 	return new ResponseEntity<BlogPost>(updatedBlog,HttpStatus.OK);
+ 	
+ }
+
+ @RequestMapping(value="/get/{id}", method=RequestMethod.DELETE)
+ public ResponseEntity<Void> deleteBlog(@PathVariable("id") int id)
+ 		{
+ 	System.out.println("Delete function at blog controller1");
+ 	BlogPost person = blogDao.getBlogPost(id);
+ 			if(person==null)
+ 			{
+ 				System.out.println("Delete function at blog controller2");
+ 				return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+
+ 			}
+ 			System.out.println("Delete function at blog controller3");
+ 			blogDao.deleteBlog(id);
+ 			return new ResponseEntity<Void>(HttpStatus.OK);
+ 		}
+
+
 }

@@ -64,6 +64,13 @@ app.config(function($routeProvider){
 		controller:'BlogDetailController',
 		templateUrl:'_blog/getBlogDetail.html'
 	})
+		
+	.when('/edit/:id',{
+		controller:'EditController',
+		templateUrl:'_blog/editBlog.html'
+	})
+	
+	
 	
 	//********** chat *******
 	.when('/chat',{

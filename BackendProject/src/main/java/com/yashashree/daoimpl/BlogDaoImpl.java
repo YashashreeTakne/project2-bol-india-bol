@@ -68,4 +68,40 @@ private SessionFactory sessionFactory;
 		session.close();
 		return blogComments;
 	}
+
+	@Override
+	public BlogPost updateBlog(int id, BlogPost blogPost) {
+		//person -> modified value -> 226
+				Session session=sessionFactory.openSession();
+				//current person -> 226
+				//currentPerson, person -> with same id
+				//updating only variable person
+				//notunique
+				//select [before modification]
+				
+				System.out.println("edit blog1");
+				BlogPost currentBlog=(BlogPost)session.get(BlogPost.class, id);//persistent
+				if(currentBlog==null) //id doesnt exist in the database
+					return null;
+				//to modify [update]
+				session.merge(blogPost); //update query where personid=?
+				//select [after modification]
+				BlogPost updatedBlog=(BlogPost)session.get(BlogPost.class, id); //select query
+				session.flush();
+				session.close();
+				return updatedBlog;
+			
+	}
+
+	@Override
+	public void deleteBlog(int id) {
+		Session session = sessionFactory.openSession();
+		// it makes the object persistent - person
+		BlogPost blog = (BlogPost)session.get(BlogPost.class,id);
+		session.delete(blog);
+		// transient - person
+		session.flush();
+		session.close();
+				
+	}
 }

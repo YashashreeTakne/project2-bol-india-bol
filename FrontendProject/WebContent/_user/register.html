@@ -9,7 +9,7 @@ form {
     border: 3px solid #f1f1f1;
 }
 
-input[type=text], input[type=password] {
+input[type=text], input[type=password], input[type=email] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -56,23 +56,32 @@ span.psw {
     }
     
 }
+
+
+input.ng-invalid {
+    background-color:pink;
+}
+input.ng-valid {
+    background-color:lightgreen;
+}
 </style>
+
 </head>
 <body>
-<form> 
+<form name="myForm"> 
 <div class="imgcontainer">
     <img src="1.png" alt="Webminar" class="avatar">
   </div>
 <div class="container">
     <label><b>Username</b></label>
 <input type="text" ng-model="user.username" placeholder="Enter Username" name="uname" required>
-
+<span ng-show="myForm.uname.$touched && myForm.uname.$invalid">Username is required.</span>
  <label><b>Password</b></label>
 <input type="password" ng-model="user.password"  placeholder="Enter Password" name="psw" required>
 
  <label><b>Email</b></label>
-<input type="text" ng-model="user.email" placeholder="Enter Email" name="email" required>
-
+<input type="email" ng-model="user.email" placeholder="Enter Email" name="email" required>
+<br>
  <label><b>Select Role</b></label>
 <br>
 <input type="radio" ng-model="user.role" value="STUDENT"><span><strong> Student  </strong></span>

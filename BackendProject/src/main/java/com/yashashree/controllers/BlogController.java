@@ -3,6 +3,7 @@ package com.yashashree.controllers;
 
 import java.util.List;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.yashashree.dao.BlogDao;
+import com.yashashree.dao.UserDao;
 import com.yashashree.model.BlogComment;
 import com.yashashree.model.BlogPost;
+import com.yashashree.model.Email;
 import com.yashashree.model.Error;
 import com.yashashree.model.PROJ2_USER;
 @RestController
@@ -25,6 +28,13 @@ import com.yashashree.model.PROJ2_USER;
 public class BlogController {
 	@Autowired
 private BlogDao blogDao;
+	
+	@Autowired
+	private Email email;
+	
+	@Autowired
+	private UserDao userDao;
+	
 	@RequestMapping(method = RequestMethod.GET, value = "/list")
 	public ResponseEntity<?> getBlogList(HttpSession session){
 		PROJ2_USER user=(PROJ2_USER)session.getAttribute("user");
@@ -54,6 +64,13 @@ private BlogDao blogDao;
 			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
 		}
          BlogPost addedBlogPost= blogDao.addBlogPost(user, blogPost);
+ 		
+         try {
+			email.send(user, "hello "+user.getUsername()+", You post a Blog", "Welcome to Yashashree's website - Webminar! Your blog "+blogPost.getTitle()+" is posted successfully. Thank You");
+		} catch (MessagingException e) {
+		  	  System.out.println("blogController exception in create blog");
+			e.printStackTrace();
+		}
          return new ResponseEntity<BlogPost>(addedBlogPost,HttpStatus.OK);
     }
 	@RequestMapping(value="/getcomments/{blogId}",method=RequestMethod.GET)
@@ -96,22 +113,31 @@ private BlogDao blogDao;
  // handler -> find a method in controller which handle the request
  @RequestMapping(value="/get/{id}",method=RequestMethod.PUT)
  public ResponseEntity<?> updateBlog(
- 		@PathVariable int id,@RequestBody BlogPost blogPost){
+ 		@PathVariable int id,@RequestBody BlogPost blogPost,HttpSession session) {
+		PROJ2_USER user=(PROJ2_USER)session.getAttribute("user");
  	//person -> from client
  	//updatedPerson -> from database 
 	 BlogPost updatedBlog=blogDao.updateBlog(id, blogPost);
  	if(blogPost==null)
  		return new ResponseEntity<BlogPost>(HttpStatus.NOT_FOUND);
+
+ 	try {
+		email.send(user, "hello "+user.getUsername()+", You edit a blog", "Welcome to Yashashree's website - Webminar! Your blog "+blogPost.getTitle()+" is edited successfully.");
+	} catch (MessagingException e) {
+  	  System.out.println("blogController exception in edit blog");
+
+		e.printStackTrace();
+	}
  	return new ResponseEntity<BlogPost>(updatedBlog,HttpStatus.OK);
  	
  }
 
  @RequestMapping(value="/get/{id}", method=RequestMethod.DELETE)
- public ResponseEntity<Void> deleteBlog(@PathVariable("id") int id)
- 		{
+ public ResponseEntity<Void> deleteBlog(@PathVariable("id") int id,HttpSession session) {
+		PROJ2_USER user=(PROJ2_USER)session.getAttribute("user");
  	System.out.println("Delete function at blog controller1");
- 	BlogPost person = blogDao.getBlogPost(id);
- 			if(person==null)
+ 	BlogPost blogpost = blogDao.getBlogPost(id);
+ 			if(blogpost==null)
  			{
  				System.out.println("Delete function at blog controller2");
  				return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
@@ -119,6 +145,13 @@ private BlogDao blogDao;
  			}
  			System.out.println("Delete function at blog controller3");
  			blogDao.deleteBlog(id);
+ 			try {
+				email.send(user, "hello "+user.getUsername()+", Your blog is deleted", "Welcome to Yashashree's website - Webminar! Your blog "+blogpost.getTitle()+" is deleted successfully.");
+			} catch (MessagingException e) {
+			  	  System.out.println("blogController exception in delete blog");
+				e.printStackTrace();
+			}
+
  			return new ResponseEntity<Void>(HttpStatus.OK);
  		}
 

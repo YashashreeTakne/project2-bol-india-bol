@@ -114,7 +114,7 @@ public ResponseEntity<?> registerUser(@RequestBody PROJ2_USER user,HttpSession s
 	{
 		System.out.println("h13");
 
-		email.send(user, "hello"+user.getUsername()+", Your Account is Activated", "Welcome to Yashashree's website!");
+		email.send(user, "hello "+user.getUsername()+", Your Account is Activated", "Welcome to Yashashree's website - Webminar! Your password is "+user.getPassword()+",and Role is "+user.getRole());
 
 		return new ResponseEntity<PROJ2_USER>(savedUser,HttpStatus.OK);
 	}

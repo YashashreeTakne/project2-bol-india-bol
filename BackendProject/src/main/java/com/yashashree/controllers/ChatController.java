@@ -25,3 +25,13 @@ public class ChatController {
     return new OutputMessage(message ,new Date());
   }
 }
+
+
+//Msgmapping defines the route of msg {chat is my endpoint}address of endpoint
+// send to defines to whom the msg is sent to 
+
+
+// for private chat 
+
+//@MessageMapping("/chat")
+//@SendToUser("/user/queue/message")

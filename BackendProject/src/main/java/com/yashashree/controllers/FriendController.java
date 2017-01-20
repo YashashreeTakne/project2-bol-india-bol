@@ -23,13 +23,13 @@ public class FriendController {
 	@Autowired
 private FriendDao friendDao;
 
-	public FriendDao getFriendDao() {
-		return friendDao;
-	}
-
-	public void setFriendDao(FriendDao friendDao) {
-		this.friendDao = friendDao;
-	}
+//	public FriendDao getFriendDao() {
+//		return friendDao;
+//	}
+//
+//	public void setFriendDao(FriendDao friendDao) {
+//		this.friendDao = friendDao;
+//	}
 @RequestMapping(value="/getAllFriends",method=RequestMethod.GET)
 	public ResponseEntity<?> getAllFriends(HttpSession session){
 	PROJ2_USER user=(PROJ2_USER)session.getAttribute("user");

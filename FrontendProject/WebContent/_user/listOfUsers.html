@@ -7,7 +7,7 @@
 <body>
 <br><br><br><br><br><br><br>
 
-List of Users 02131534153
+<h1>List of Users </h1>
 
 <div class="table-responsive">     
 	<table class="table table-bordered ,table table-striped">
@@ -29,11 +29,11 @@ List of Users 02131534153
 <td ng-if="!u.online">No</td>
 
 <td>{{u.role}}</td>
-<td><a href="" ng-click="friendRequest(u.username)" class="btn btn-xs btn-default" >Send Friend Request</a></td>
+<td><a href="" ng-click="friendRequest(u.username)" class="btn btn-info" >Send Friend Request</a></td>
 </tr>
 </tbody>
 </table>`
 </div>
-<a href="#/home" type="button">Home</a>
+<a href="#/home" type="button" class="btn btn-primary">Home</a>
 </body>
 </html>

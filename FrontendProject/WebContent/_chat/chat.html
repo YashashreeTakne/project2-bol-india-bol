@@ -15,13 +15,13 @@
 			ng-model="message" class="form-control">
 <!-- 		<div class="info"> -->
 			<span class="count" ng-bind="max - message.length"
-				ng-class="{danger: message.length > max}">140</span>
+				ng-class="{danger: message.length > max}">300</span>
 			<button ng-disabled="message.length > max || message.length === 0">Send</button>
 <!-- 		</div> -->
 		</div>
 		
 	</form>
-	<hr />
+	<hr /><br>
 	<p ng-repeat="message in messages | orderBy:'time':true"
 		class="message">
 		<time>{{message.time | date:'HH:mm'}}</time>

@@ -1,4 +1,4 @@
-app.controller('UserController',function($scope,$rootScope,$location,UserService){
+app.controller('UserController',function($scope,$rootScope,$cookieStore,$location,UserService){
 	$scope.user={id:'',username:'',password:'',email:'',role:'',isOnline:'',enabled:''};
 	$scope.message;
 	$scope.submit=function(){
@@ -16,6 +16,9 @@ app.controller('UserController',function($scope,$rootScope,$location,UserService
 		  $location.path("/login");
 	})
 }
+	
+	
+	
 	
 //		.then(function(response){
 //			console.log('Entering - authenticate function in usercontroller')
@@ -53,29 +56,59 @@ app.controller('UserController',function($scope,$rootScope,$location,UserService
 		})
 	}
 	
-
+	
 	$rootScope.logout=function(){
-		console.log('logout function1')
+		console.log('logout function')
 		delete $rootScope.currentUser;
-		console.log('logout function2')
+		$cookieStore.remove('currentUser')
 		UserService.logout()
 		.then(function(response){
 			console.log("logged out successfully..");
-			$scope.message="Logged out Successfully";
+			$rootScope.message="Logged out Successfully";
 			$location.path('/login')
 		},
 		function(response){
-			console.log('logout function3')
 			console.log(response.status);
 		})
 		
-	}
+	}	
 	
 	$rootScope.hasRole=function(role){
 		if($rootScope.currentUser.role==undefined)
 			return false;
 		return $rootScope.currentUser.role==role;
+	}	
+
+	
+	
+	/** To Send FriendRequest from listOfUsers*/
+	$scope.friendRequest=function(username){
+		alert('friendRequest in userController')
+		console.log('friendrequest function')
+		UserService.friendRequest(username)
+		.then(function(response){
+			console.log(response.status);
+			alert('Friend request Send')
+			getAllUsers();
+			$location.path('/getAllUsers')
+		},
+		function(response){
+			console.log(response.status);
+		})
 	}
 	
-
+	
+	function getAllUsers(){
+		console.log('entering get all users ')
+		UserService.getAllUsers()
+		.then(function(response){
+		console.log(response.status)
+		console.log(response.data)
+		$scope.users=response.data
+		},function(response){
+			console.log(response.status)
+		}
+		)
+	}
+	getAllUsers()
 })

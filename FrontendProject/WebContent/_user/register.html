@@ -6,7 +6,7 @@
 
 <style>
 form {
-    border: 3px solid #f1f1f1;
+    border: 3px solid #000000;
 }
 
 input[type=text], input[type=password], input[type=email] {
@@ -14,16 +14,18 @@ input[type=text], input[type=password], input[type=email] {
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
-    border: 1px solid #ccc;
+    border: 4px solid #86f442;
     box-sizing: border-box;
+}
+input::-webkit-input-placeholder {
+color: #00004d !important;
 }
 
 button {
-
  
     padding: 14px 20px;
     margin: 8px 0;
-    border: none;
+    border: 4px solid #000000;
     cursor: pointer;
     width: 100%;
 }
@@ -36,6 +38,7 @@ button {
 img.avatar {
     width: 40%;
     border-radius: 50%;
+    border: 5px solid #86f442;
 }
 
 .container {
@@ -56,7 +59,20 @@ span.psw {
     }
     
 }
+</style>
 
+<style> 
+textarea {
+    width: 100%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 4px solid #86f442;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
+}
 
 input.ng-invalid {
     background-color:pink;
@@ -64,6 +80,7 @@ input.ng-invalid {
 input.ng-valid {
     background-color:lightgreen;
 }
+
 </style>
 
 </head>
@@ -73,22 +90,34 @@ input.ng-valid {
     <img src="1.png" alt="Webminar" class="avatar">
   </div>
 <div class="container">
-    <label><b>Username</b></label>
+    <label><b><strong><font size="5" style="color:black;">Username</font></strong></b></label>
 <input type="text" ng-model="user.username" placeholder="Enter Username" name="uname" required>
-<span ng-show="myForm.uname.$touched && myForm.uname.$invalid">Username is required.</span>
- <label><b>Password</b></label>
-<input type="password" ng-model="user.password"  placeholder="Enter Password" name="psw" required>
+<span ng-show="myForm.uname.$touched && myForm.uname.$invalid" style="color:red;"><b> <strong><font size="3"> Username is required.</font></strong></b><br></span>
 
- <label><b>Email</b></label>
-<input type="email" ng-model="user.email" placeholder="Enter Email" name="email" required>
+
+ <label><b><strong><font size="5" style="color:black;">Password</font></strong></b></label>
+<input type="password" ng-model="user.password"  placeholder="Enter Password"  name="psw" required>
+
+ <label><b><strong><font size="5" style="color:black;">Email</font></strong></b></label>
+<input type="email" ng-model="user.email" placeholder="Enter Email" name="email1" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" required>
+<!--  <div ng-messages="myForm.email.$error"> -->
+<!--     <div ng-message="pattern">Please enter a valid email address!</div> -->
+    
+<!--   </div> -->
+  
+   <span ng-show="myForm.email1.$error.required"> Your email is required. </span>
+            <span class="error" ng-show="myForm.email1.$error.pattern">Please input a valid email.</span>
+            
+            <br>
+<!-- /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/ -->
+
+ <label><b><strong><font size="5" style="color:black;">Select Role</font></strong></b></label>
 <br>
- <label><b>Select Role</b></label>
-<br>
-<input type="radio" ng-model="user.role" value="STUDENT"><span><strong> Student  </strong></span>
-<input type="radio" ng-model="user.role" value="ALUMNI"><span><strong> Alumni  </strong></span>
-<input type="radio" ng-model="user.role" value="EMPLOYEE"><span><strong> Employee </strong> </span>
+<input type="radio" ng-model="user.role" value="STUDENT"><span><strong><b><strong><font size="5" style="color:black;"> Student </font></strong></b> </strong></span>
+<input type="radio" ng-model="user.role" value="ALUMNI"><span><strong> <b><strong><font size="5" style="color:black;">Alumni </font></strong></b> </strong></span>
+<input type="radio" ng-model="user.role" value="EMPLOYEE"><span><strong> <b><strong><font size="5" style="color:black;">Employee </font></strong></b></strong> </span>
 <br><br>
-<button type="submit" ng-click="registerUser()" class="btn btn-info">Register</button>
+<button type="submit" ng-click="registerUser()" class="btn btn-info"><b><strong><font size="6" >Register </font></strong></b></button>
 </div>
 </form>
 {{errorMessage}}

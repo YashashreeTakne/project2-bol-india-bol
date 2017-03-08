@@ -99,14 +99,10 @@ input.ng-valid {
 <input type="password" ng-model="user.password"  placeholder="Enter Password"  name="psw" required>
 
  <label><b><strong><font size="5" style="color:black;">Email</font></strong></b></label>
-<input type="email" ng-model="user.email" placeholder="Enter Email" name="email1" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" required>
-<!--  <div ng-messages="myForm.email.$error"> -->
-<!--     <div ng-message="pattern">Please enter a valid email address!</div> -->
-    
-<!--   </div> -->
-  
-   <span ng-show="myForm.email1.$error.required"> Your email is required. </span>
-            <span class="error" ng-show="myForm.email1.$error.pattern">Please input a valid email.</span>
+<input type="email" ng-model="user.email" placeholder="Enter Email" name="email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" required>
+
+<!--    <span ng-show="myForm.email.$error.required"> Your email is required. </span> -->
+   <span class="error" ng-show="myForm.email.$error.pattern">Please input a valid email.</span>
             
             <br>
 <!-- /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/ -->
